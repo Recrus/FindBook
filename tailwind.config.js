@@ -9,16 +9,9 @@ export default {
       md: "768px",
       lg: "1024px",
       xl: "1440px",
-      "2xl": "2560px",
     },
     container: {
       center: true,
-    },
-    colors: {
-      primary: "#212121",
-      accent: "#303030",
-      additional: "#424242",
-      neutral: "#f2f2f2",
     },
     fontFamily: {
       primary: ["Montserrat", "sans-serif"],
@@ -38,6 +31,14 @@ export default {
       },
       borderRadius: {
         "4xl": "2rem",
+      },
+      colors: {
+        primary: "#212121",
+        accent: "#303030",
+        additional: "#424242",
+        neutral: "#f2f2f2",
+        blue: "#234ad2",
+        grey: "#575765",
       },
     },
   },
