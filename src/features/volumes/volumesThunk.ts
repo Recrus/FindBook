@@ -1,13 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchVolumesAPI } from "../api/api";
-import { VolumesSliceState } from "../../../types/types";
+import { ErrorResponse, VolumesSliceState } from "../../../types/types";
 import { AxiosError } from "axios";
-
-interface ErrorResponse {
-  error: {
-    message: string;
-  };
-}
 
 export const fetchVolumes = createAsyncThunk(
   "volumes/fetchVolumes",

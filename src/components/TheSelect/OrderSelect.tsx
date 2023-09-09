@@ -4,8 +4,7 @@ import { ChangeEvent } from "react";
 import TheSelect from "./TheSelect.tsx";
 import { fetchVolumes } from "../../features/volumes/volumesThunk.ts";
 import { selectOrder } from "../../features/volumes/volumesSelectors.ts";
-
-type Order = "Relevance" | "Newest";
+import { Order } from "../../../types/types.ts";
 
 const orders: Order[] = ["Relevance", "Newest"];
 

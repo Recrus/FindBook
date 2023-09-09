@@ -1,9 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-export interface ViewErrorProps {
-  title: string;
-  text?: string;
-}
+import { ViewErrorProps } from "../../../types/types.ts";
 
 const ViewError: FC<ViewErrorProps> = ({ title, text }) => {
   const linkClasses: string =

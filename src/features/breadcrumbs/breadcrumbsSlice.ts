@@ -1,13 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface Breadcrumb {
-  label: string;
-  href?: string;
-}
-
-interface BreadcrumbState {
-  breadcrumbs: Breadcrumb[];
-}
+import { Breadcrumb, BreadcrumbState } from "../../../types/types.ts";
 
 const initialState: BreadcrumbState = {
   breadcrumbs: [],

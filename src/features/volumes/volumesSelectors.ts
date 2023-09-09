@@ -1,7 +1,7 @@
 import { VolumesSliceState } from "../../../types/types.ts";
 
 export const selectAllVolumes = (state: { volumes: VolumesSliceState }) =>
-  state.volumes.volumes;
+  state.volumes;
 
 export const selectLoading = (state: { volumes: VolumesSliceState }) =>
   state.volumes.loading;

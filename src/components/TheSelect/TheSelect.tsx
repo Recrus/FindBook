@@ -1,13 +1,6 @@
-import { ChangeEvent, FC } from "react";
+import { FC } from "react";
 import { useAppSelector } from "../../app/hooks.ts";
-import { VolumesSliceState } from "../../../types/types.ts";
-
-interface SelectProps {
-  selector: (state: { volumes: VolumesSliceState }) => string;
-  options: string[];
-  label: string;
-  handler: (e: ChangeEvent<HTMLSelectElement>) => void;
-}
+import { SelectProps } from "../../../types/types.ts";
 
 const TheSelect: FC<SelectProps> = ({ selector, options, label, handler }) => {
   const selectedValue = useAppSelector(selector);

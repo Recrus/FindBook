@@ -1,4 +1,6 @@
 //Volumes types
+import { ChangeEvent } from "react";
+
 interface AccessInfo {
   country: string;
   viewability: string;
@@ -85,4 +87,90 @@ export interface VolumesSliceState {
   startIndex: number;
   loading: boolean;
   error: string | null;
+}
+
+//api.ts types
+
+export interface FetchVolumesParams {
+  searchKey: string;
+  startIndex: number;
+  category: string;
+  order: string;
+}
+
+//breadcrumbsSlice types
+
+export interface Breadcrumb {
+  label: string;
+  href?: string;
+}
+
+export interface BreadcrumbState {
+  breadcrumbs: Breadcrumb[];
+}
+
+//AxiosError types
+
+export interface ErrorResponse {
+  error: {
+    message: string;
+  };
+}
+
+//ErrorView types
+
+export interface ViewErrorProps {
+  title: string;
+  text?: string;
+}
+
+//BookCard types
+
+export interface BookCardProps {
+  title: string;
+  authors: string[];
+  image?: {
+    smallThumbnail: string;
+    thumbnail: string;
+  };
+  categories?: string[];
+}
+
+//TheAlert types
+
+export interface TheAlertProps {
+  message: string | null;
+  type?: "success" | "info" | "warning" | "error";
+  onClose?: () => void;
+}
+
+//TheButton types
+
+export interface TheButtonProps {
+  text: string;
+  handler: () => void;
+}
+
+//CategorySelect types
+
+export type Category =
+  | ""
+  | "Art"
+  | "Biography"
+  | "Computers"
+  | "History"
+  | "Medical"
+  | "Poetry";
+
+//OrderSelect types
+
+export type Order = "Relevance" | "Newest";
+
+//TheSelect types
+
+export interface SelectProps {
+  selector: (state: { volumes: VolumesSliceState }) => string;
+  options: string[];
+  label: string;
+  handler: (e: ChangeEvent<HTMLSelectElement>) => void;
 }

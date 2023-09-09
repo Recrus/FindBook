@@ -1,12 +1,7 @@
 import { FC, useEffect, useState } from "react";
+import { TheAlertProps } from "../../../types/types.ts";
 
-interface AlertProps {
-  message: string | null;
-  type?: "success" | "info" | "warning" | "error";
-  onClose?: () => void;
-}
-
-const Alert: FC<AlertProps> = ({ message, type = "info", onClose }) => {
+const TheAlert: FC<TheAlertProps> = ({ message, type = "info", onClose }) => {
   const [isVisible, setIsVisible] = useState(true);
   const getAlertBgColor = () => {
     switch (type) {
@@ -51,4 +46,4 @@ const Alert: FC<AlertProps> = ({ message, type = "info", onClose }) => {
   );
 };
 
-export default Alert;
+export default TheAlert;

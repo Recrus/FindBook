@@ -1,9 +1,5 @@
 import { FC } from "react";
-
-interface TheButtonProps {
-  text: string;
-  handler: () => void;
-}
+import { TheButtonProps } from "../../../types/types.ts";
 
 const TheButton: FC<TheButtonProps> = ({ text, handler }) => {
   return (
