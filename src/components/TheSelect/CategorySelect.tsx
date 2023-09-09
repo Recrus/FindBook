@@ -4,15 +4,7 @@ import { ChangeEvent } from "react";
 import TheSelect from "./TheSelect.tsx";
 import { fetchVolumes } from "../../features/volumes/volumesThunk.ts";
 import { selectCategory } from "../../features/volumes/volumesSelectors.ts";
-
-type Category =
-  | ""
-  | "Art"
-  | "Biography"
-  | "Computers"
-  | "History"
-  | "Medical"
-  | "Poetry";
+import { Category } from "../../../types/types.ts";
 
 const categories: Category[] = [
   "",

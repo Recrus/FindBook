@@ -1,15 +1,6 @@
 import { FC } from "react";
 import bookMock from "../../assets/book.svg";
-
-interface BookCardProps {
-  title: string;
-  authors: string[];
-  image?: {
-    smallThumbnail: string;
-    thumbnail: string;
-  };
-  categories?: string[];
-}
+import { BookCardProps } from "../../../types/types.ts";
 
 const BookCard: FC<BookCardProps> = ({ title, authors, image, categories }) => {
   return (

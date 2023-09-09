@@ -1,14 +1,7 @@
 import axios from "axios";
-import { Volume } from "../../../types/types.ts";
+import { FetchVolumesParams, Volume } from "../../../types/types.ts";
 
 export const BASE_URL = import.meta.env.VITE_BASE_URL;
-
-interface FetchVolumesParams {
-  searchKey: string;
-  startIndex: number;
-  category: string;
-  order: string;
-}
 
 export const fetchVolumesAPI = async (params: FetchVolumesParams) => {
   const { searchKey, startIndex, category, order } = params;

@@ -8,15 +8,16 @@ import TheButton from "../../../components/TheButton/TheButton.tsx";
 import { fetchVolumes } from "../../../features/volumes/volumesThunk.ts";
 import { useEffect, useState } from "react";
 import {
+  selectAllVolumes,
   selectError,
   selectLoading,
   selectTotalItems,
 } from "../../../features/volumes/volumesSelectors.ts";
-import Alert from "../../../components/Errors/Alert.tsx";
+import TheAlert from "../../../components/Errors/TheAlert.tsx";
 
 const Books = () => {
   const dispatch = useAppDispatch();
-  const volumes: VolumesSliceState = useAppSelector((state) => state.volumes);
+  const volumes: VolumesSliceState = useAppSelector(selectAllVolumes);
   const loading = useAppSelector(selectLoading);
   const error = useAppSelector(selectError);
   const totalItems = useAppSelector(selectTotalItems);
@@ -104,7 +105,7 @@ const Books = () => {
         </div>
       )}
       {showAlert ? (
-        <Alert message={error} onClose={handleCloseAlert} type={"error"} />
+        <TheAlert message={error} onClose={handleCloseAlert} type={"error"} />
       ) : null}
     </div>
   );
