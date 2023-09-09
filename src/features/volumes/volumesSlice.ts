@@ -1,39 +1,43 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import axios, { AxiosError } from "axios";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Volume, VolumesSliceState } from "../../../types/types.ts";
-
-interface FetchVolumeArgs {
-  searchKey: string;
-}
-
-const apiKey = import.meta.env.VITE_API_KEY;
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+import { fetchVolumes } from "./volumesThunk.ts";
 
 const initialState: VolumesSliceState = {
   volumes: [],
+  totalItems: null,
+  category: "",
+  order: "relevance",
+  searchKey: "",
   loading: true,
   error: null,
+  startIndex: 0,
 };
-
-export const fetchVolumes = createAsyncThunk(
-  "volumes/fetchVolumes",
-  async (args: FetchVolumeArgs, thunkAPI) => {
-    const { searchKey } = args;
-    const VOLUMES_URL = `${BASE_URL}volumes?q=${searchKey}&maxResults=30&key=${apiKey}`;
-    try {
-      const response = await axios.get<{ items: Volume[] }>(VOLUMES_URL);
-      return [...response.data.items];
-    } catch (err: unknown) {
-      const axiosError = err as AxiosError;
-      return thunkAPI.rejectWithValue(axiosError.message);
-    }
-  },
-);
 
 const volumesSlice = createSlice({
   name: "volumes",
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchKey: (state, action: PayloadAction<string>) => {
+      state.searchKey = action.payload;
+      state.startIndex = 0;
+    },
+    loadMore: (state) => {
+      state.startIndex += 30;
+    },
+    setSearchCategory: (state, action: PayloadAction<string>) => {
+      state.category = action.payload;
+      state.startIndex = 0;
+    },
+    setSearchOrder: (state, action: PayloadAction<string>) => {
+      state.order = action.payload;
+      state.startIndex = 0;
+    },
+    resetAction: (state) => {
+      state.searchKey = initialState.searchKey;
+      state.category = initialState.category;
+      state.order = initialState.order;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchVolumes.pending, (state) => {
       state.loading = true;
@@ -41,24 +45,40 @@ const volumesSlice = createSlice({
     });
     builder.addCase(
       fetchVolumes.fulfilled,
-      (state, action: PayloadAction<Volume[]>) => {
+      (
+        state,
+        action: PayloadAction<{
+          items?: Volume[];
+          totalItems: number;
+          kind: string;
+        }>,
+      ) => {
         state.loading = false;
-        state.volumes = action.payload;
+        state.totalItems = action.payload.totalItems;
+
+        const newVolumes = action.payload.items ?? [];
+        if (state.startIndex === 0) {
+          state.volumes = newVolumes;
+        } else {
+          state.volumes = [...state.volumes, ...newVolumes];
+        }
+
         state.error = null;
       },
     );
     builder.addCase(fetchVolumes.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message || "An unknown error occurred";
+      state.loading = true;
+      state.error = (action.payload as string) || "An unknown error occurred";
     });
   },
 });
 
-export const selectAllVolumes = (state: { volumes: VolumesSliceState }) =>
-  state.volumes.volumes;
-export const selectLoading = (state: { volumes: VolumesSliceState }) =>
-  state.volumes.loading;
-export const selectError = (state: { volumes: VolumesSliceState }) =>
-  state.volumes.error;
+export const {
+  setSearchKey,
+  loadMore,
+  setSearchCategory,
+  resetAction,
+  setSearchOrder,
+} = volumesSlice.actions;
 
 export default volumesSlice.reducer;

@@ -1,6 +1,6 @@
 const BookCardSkeleton = () => {
   return (
-    <div className="w-80 p-4 flex flex-col bg-primary rounded shadow-md">
+    <div className="w-72 xl:w-80 p-4 flex flex-col bg-primary rounded shadow-md">
       <div className="h-96 flex-center items-center">
         <div className="h-80 w-60 animate-pulse bg-accent"></div>
       </div>

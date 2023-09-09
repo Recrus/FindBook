@@ -1,14 +1,14 @@
-import Books from "../Books/Books.tsx";
-import Filters from "../../components/Filters/Filters.tsx";
+import Books from "./Books/Books.tsx";
+import Filters from "./Filters/Filters.tsx";
 
 const Home = () => {
   return (
-    <main className="grid grid-cols-5 mx-auto px-4 pt-6">
-      <section className="col-span-4">
-        <Books />
-      </section>
-      <section className="h-[80vh] bg-primary rounded shadow-md sticky top-16 right-11 w-80">
+    <main className="grid grid-cols-1 justify-center lg:grid-cols-4 xl:grid-cols-5 mx-auto px-4">
+      <section className="w-70 mb-4 bg-primary rounded shadow-md lg:sticky lg:top-16 lg:h-[80vh]">
         <Filters />
+      </section>
+      <section className="md:col-span-3 xl:col-span-4 flex flex-col md:flex-center md:items-center">
+        <Books />
       </section>
     </main>
   );

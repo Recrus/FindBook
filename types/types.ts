@@ -78,6 +78,11 @@ export interface Volume {
 }
 export interface VolumesSliceState {
   volumes: Volume[];
+  totalItems: number | null;
+  searchKey: string;
+  category: string;
+  order: string;
+  startIndex: number;
   loading: boolean;
   error: string | null;
 }
