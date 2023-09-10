@@ -31,7 +31,7 @@ const BookOverview = () => {
   }, []);
 
   return (
-    <div className="mx-4 py-4 bg-primary rounded shadow-md flex flex-col items-center xl:grid xl:grid-cols-4 xl:justify-items-center">
+    <div className="mx-4 p-4 bg-primary rounded shadow-md flex flex-col items-center lg:items-start lg:grid lg:grid-cols-4">
       {volume.volumeInfo.imageLinks?.thumbnail ? (
         <div
           className="bg-contain bg-no-repeat bg-center h-96 w-64"
@@ -44,7 +44,7 @@ const BookOverview = () => {
           <img className="h-96 w-40" src={bookMock} />
         </div>
       )}
-      <div className="p-4 xl:col-span-3 xl:pr-10">
+      <div className="mt-2 lg:ml-4 lg:mt-0 px-4 lg:col-span-3 lg:pr-10">
         <div className="max-w-fit mb-4">
           {volume.volumeInfo.categories ? (
             <div className="truncate text-ellipsis max-w-[12rem] bg-blue p-2 rounded">
